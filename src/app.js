@@ -7,6 +7,7 @@ import router from '../routes/routes.js';
 
 //Crea un objeto express
 const app = express();
+const serverless = require('serverless-http');
 
 //Añade las capas middleware
 app.use(cors())
@@ -31,3 +32,5 @@ app.get('/', (req, res) => {
 app.listen(8081, () => {
     console.log("Server running in port 8001")
 })
+
+module.exports.handler = serverless(app);
