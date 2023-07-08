@@ -1,9 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 //importamos conexion a db
-import db from './database/db.js';
+import db from '../database/db.js';
 //importamos rutas
-import router from './routes/routes.js';
+import router from '../routes/routes.js';
 
 //Crea un objeto express
 const app = express();
@@ -12,6 +12,7 @@ const app = express();
 app.use(cors())
 app.use(express.json())
 app.use('/comidas', router)
+app.use('/.netlify/functions/api', router)
 
 //Realiza la conexion con la base de datos
 try {
