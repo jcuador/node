@@ -13,10 +13,16 @@ app.use(cors())
 app.use(express.json())
 app.use('/comidas', router)
 app.use('/.netlify/functions/api', router)
+app.use(function(req, response, next) {
+    response.setHeader("Access-Control-Allow-Origin", "*");
+    response.setHeader("Access-Control-Allow-Credentials", "true");
+    response.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+    response.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+})
 
 //Realiza la conexion con la base de datos
 try {
-    await db.authenticate()
+    db.authenticate()
     console.log("Conexión correcta con la DB");
 } catch (error) {
     console.log('Error en la conexión: ${error}');
