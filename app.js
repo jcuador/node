@@ -8,17 +8,17 @@ import router from './routes/routes.js';
 //Crea un objeto express
 const app = express();
 
-//Añade las capas middleware
-app.use(cors())
-app.use(express.json())
-app.use('/comidas', router)
-
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
     res.header("Access-Control-Allow-Headers", "Content-Type");
     next();
-  });
+});
+
+//Añade las capas middleware
+//app.use(cors())
+app.use(express.json())
+app.use('/comidas', router)
 
 //Realiza la conexion con la base de datos
 try {
@@ -29,9 +29,10 @@ try {
 }
 
 //Para dicha ruta ante un GET envía una respuesta
+/*
 app.get('/', (req, res) => {
     res.send("Hola Mundo")
-})
+})*/
 
 //El servidor esccuha en el puerto 8081 las peticiones
 app.listen(8081, () => {
