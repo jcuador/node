@@ -10,6 +10,7 @@ const ModelUser = db.define('usuarios', {
     Email: {type: DataTypes.INTEGER},
     Nombre: {type: DataTypes.INTEGER},
     Habitación: {type: DataTypes.INTEGER},
+    Régimen: {type: DataTypes.INTEGER}
 })
 
 export default ModelUser;
